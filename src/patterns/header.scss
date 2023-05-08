@@ -1,0 +1,43 @@
+.store-header {
+    background-color: #242424;
+}
+
+.store-header .main-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo img {
+    width: 200px;
+}
+
+.store-header .categories .menu {
+    list-style: none;
+    justify-content: space-evenly;
+    gap: 10;
+    display: flex;
+}
+
+#dropdownBtn {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: #242424;
+    list-style: none;
+    display: none;
+    padding: 1rem 0rem;
+
+    & li{
+        padding: .5rem 2rem;
+        width: 250px;
+
+        &:hover{
+            background-color: #646cff;
+        }
+    }
+}
+#dropdownBtn:hover .dropdown-menu {
+    display: block;
+}
