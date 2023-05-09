@@ -1,0 +1,33 @@
+.product .info .picture {
+    flex-shrink: 0;
+    & > img {
+        width: 100%;
+        background-color: #dddddd;
+    }
+
+    .pictures-list {
+        display: flex;
+        gap: 5px;
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+        }
+    }
+}
+
+@media (min-width: 990px) {
+    .product .info .picture {
+        width: 495px;
+        min-height: 495px;
+    }
+}
+
+@media (min-width: 1240px) {
+    .product .info .picture {
+        width: 600px;
+        min-height: 600px;
+    }
+}

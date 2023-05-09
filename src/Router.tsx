@@ -1,10 +1,16 @@
 import { createBrowserRouter, useRouteError } from "react-router-dom";
-import App from "./App";
-import ProductDetails from "./pages/ProductDetails";
+import ProductDetais from "./pages/Product/Product";
+import StorePattern from "./patterns/StorePattern";
+import Home from "./pages/Home/Home";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App />, errorElement: <ErrorPage /> },
-  { path: "/produtos/:id", element: <ProductDetails />, errorElement: <ErrorPage /> },
+  {
+    path: "/", element: <StorePattern/>, errorElement: <ErrorPage />, children: [
+      { path: "/", element: <Home />, errorElement: <ErrorPage /> },
+      { path: "produtos/:id", element: <ProductDetais />, errorElement: <ErrorPage /> },
+    ]
+  },
+  // { path: "/admin", element: <AdminPattern />, errorElement: <ErrorPage /> },
 ]);
 
 function ErrorPage() {

@@ -3,14 +3,13 @@ import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icon
 import './header.scss';
 
 export default function Header() {
-
     return <header className="store-header">
         <div className="main-header">
             <div className="logo-container">
 
                 <Link className="logo" to={``}>
-                    <img className="" src="assets/img/wolftech-side.png" alt="logotipo" />
-                </Link>
+                    <img className="" src="/assets/img/wolftech-side.png" alt="logotipo" />
+                </Link> 
             </div>
 
             <div className="search-bar-container">
