@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import './Card.scss'
 import formatProductPrice from './ProductPrice'
 
-type ProductProps = {
+export type ProductProps = {
     product: Product
 }
 
