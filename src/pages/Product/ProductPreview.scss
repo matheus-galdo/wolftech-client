@@ -2,7 +2,6 @@
     flex-shrink: 0;
     & > img {
         width: 100%;
-        background-color: #dddddd;
     }
 
     .pictures-list {
@@ -22,6 +21,7 @@
     .product .info .picture {
         width: 495px;
         min-height: 495px;
+        background-color: #dddddd;
     }
 }
 

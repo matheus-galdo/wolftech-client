@@ -15,7 +15,6 @@
 .product-card-wrapper {
     border-radius: 2px;
 
-
     text-decoration: none;
     color: black;
 
@@ -47,6 +46,8 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             font-size: 1rem;
+            color: #505050;
+            transition: color .2s ease-in-out;
         }
 
         .price {
@@ -72,6 +73,10 @@
 }
 
 .product-card:hover {
+    .card-details .name {
+        color: #000;
+    }
+
     .image-container img {
         transform: scale(1.1);
         border-radius: 0.5rem;

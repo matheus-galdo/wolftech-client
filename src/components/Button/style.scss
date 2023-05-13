@@ -1,0 +1,40 @@
+@mixin basic_button(){
+    background-color: #dddddd;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 3rem;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+
+.main-button{
+    @include basic_button();
+    background-color: #6363ea;
+
+    &:hover {
+        background-color: #5151d1;
+    }
+
+    &:active {
+        background-color: #2d2d7f;
+    }
+}
+
+.secondary-button{
+    @include basic_button();
+    background-color: #dcdcff;
+    color: #6363ea;
+
+    &:hover {
+        background-color: #ccccff;
+    }
+
+    &:active {
+        background-color: #c2c2ff;
+    }
+
+}
