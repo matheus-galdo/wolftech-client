@@ -1,14 +1,14 @@
-import axios from "axios"
-import { BASE_URL } from "./serviceAPIConfig"
+import axios from "axios";
+import { BASE_URL } from "./serviceAPIConfig";
+import { Authorization, SignInCredentials, User } from "../types/credentials";
 
-
-export type SignInCredentials = {
-    email: string;
-    password: string;
-}
+export type SignInResponse = {
+    user: User;
+    authorization: Authorization
+};
 
 export function signIn(credentials: SignInCredentials) {
-    return axios.post(`${BASE_URL}/login`, credentials);
+    return axios.post<SignInResponse>(`${BASE_URL}/login`, credentials);
 }
 
 export function signUp(id: string) {

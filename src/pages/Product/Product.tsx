@@ -8,7 +8,7 @@ import ProductPreview from "./ProductPreview";
 import { Button, SecondaryButton } from "../../components/Button/Button";
 
 export default function ProductDetais() {
-    const [product, setProduct] = useState<Product | null>(null)
+    const [product, setProduct] = useState<Product | null>(null);
     const { id } = useParams() as { id: string };
 
     const installmentsValue = (Number(product?.price)/12).toString();
@@ -48,5 +48,5 @@ export default function ProductDetais() {
             <h1>Produtos Similares</h1>
             produtos sugeridos
         </section>
-    </div>
+    </div>;
 }
