@@ -13,28 +13,48 @@
     flex-direction: column;
     border-radius: 5px;
     background-color: #fff;
-    padding: 10rem 6rem;
+    padding: 6rem 6rem;
+
+    h1 {
+        margin-bottom: 3rem;
+    }
 }
 
-
-.form-container .inputs-container{
+.form-container .inputs-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+
+    .forget-password {
+        margin-top: -2.5rem;
+        text-align: right;
+        cursor: pointer;
+
+        &:hover{
+            color: #6363ea;
+        }
+    }
 }
 
-.form-container .inputs-container input{
+.form-container .inputs-container input {
+    margin-bottom: 3rem;
     background-color: #fff;
     border: unset;
     outline: unset;
     border-bottom: 2px solid #e2e2e2;
     color: #000;
     font-size: 1rem;
-    font-family: 'Overpass', sans-serif;
+    font-family: "Overpass", sans-serif;
     height: 3rem;
-    transition: .2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
-.form-container .inputs-container input:focus{
+.form-container .inputs-container input:focus {
     border-bottom: 2px solid #6363ea;
+}
+
+.form-container .buttons-container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
 }

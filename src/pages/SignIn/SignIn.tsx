@@ -47,8 +47,8 @@ export default function SignIn() {
 
     return <div className="form-container">
         <form onSubmit={handleSubmit}>
-            <h1>Acessar conta</h1>
             <div className="inputs-container">
+                <h1>Acessar conta</h1>
 
                 <label htmlFor="email">E-mail</label>
                 <input type="email" name="email" onChange={handleFormChange} />
