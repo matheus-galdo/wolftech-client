@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { SecondaryButton } from "../../components/Button/Button";
 import { Button } from "../../components/Button/Button";
 import "./SignIn.scss";
-import { SignInCredentials, signIn } from "../../services/authService";
+import { signIn } from "../../services/authService";
 import { redirect } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { AxiosError } from "axios";
+import { SignInCredentials } from "../../types/credentials";
 
 
 export default function SignIn() {
@@ -13,16 +16,22 @@ export default function SignIn() {
         event.preventDefault();
         const credentials: SignInCredentials = { ...userCredentials };
 
-        if (userCredentials.email && userCredentials.password) {
-            signIn(credentials).then(response => {
-                console.log(response.data);
-                localStorage.setItem('credentials', JSON.stringify(response.data));
-                redirect('/');
-            });
-        }else{
-            console.log('invalido');
-            
+        if (!userCredentials.email) {
+            return toast.error('O campo o e-mail é obrigatório');
         }
+
+        if (!userCredentials.password) {
+            return toast.error('O campo o senha é obrigatório');
+        }
+
+        signIn(credentials)
+            .then(response => {
+                localStorage.setItem('credentials', JSON.stringify(response.data));
+                //TODO: passar o token pra um context de auth
+                redirect('/');
+            }).catch((error: AxiosError) => {
+                toast.error(error.response?.status === 401 ? 'Usuário ou senha incorretos' : 'Ocorreu um erro inesperado');
+            });
     }
 
     function handleFormChange(event: React.FormEvent<HTMLInputElement>) {
@@ -42,10 +51,10 @@ export default function SignIn() {
             <div className="inputs-container">
 
                 <label htmlFor="email">E-mail</label>
-                <input type="email" name="email" onChange={handleFormChange}/>
+                <input type="email" name="email" onChange={handleFormChange} />
 
                 <label htmlFor="password">Senha</label>
-                <input type="password" name="password" onChange={handleFormChange}/>
+                <input type="password" name="password" onChange={handleFormChange} />
                 <p className="forget-password">
                     Esqueceu a senha?
                 </p>
