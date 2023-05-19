@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { getProductById } from "../../services/productsService";
 import { useParams } from "react-router-dom";
+import { getProductById } from "../../services/productsService";
 import formatProductPrice from "../../components/ProductCard/ProductPrice";
-import './Product.scss';
 import ProductPreview from "./ProductPreview";
 import { Button, SecondaryButton } from "../../components/Button/Button";
 import { Product } from "../../types/Products";
+import './Product.scss';
 
 export default function ProductDetais() {
     const [product, setProduct] = useState<Product | null>(null);
@@ -20,7 +20,7 @@ export default function ProductDetais() {
 
     return <div className="product">
         <section className="info">
-            <ProductPreview product={product as Product} />
+            <ProductPreview product={product} />
 
             <div className="details">
                 <h1 className="name">{product?.name}</h1>

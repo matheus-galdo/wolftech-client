@@ -3,13 +3,13 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import axios from 'axios';
 import './Home.scss';
 import { Product } from '../../types/Products';
+import { getProducts } from '../../services/productsService';
 
 export default function Home() {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-        //TODO: change to products service
-        axios.get('http://localhost:8000/api/products').then(response => setProducts(response.data));
+        getProducts().then(response => setProducts(response.data));
     }, []);
 
     return <>

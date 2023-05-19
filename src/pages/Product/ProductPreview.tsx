@@ -1,13 +1,17 @@
-import { ProductProps } from "../../components/ProductCard/ProductCard";
+import { Product } from "../../types/Products";
 import './ProductPreview.scss';
 
-export default function ProductPreview({product}: ProductProps) {
+type ProductPreviewProps = {
+    product: Product | null
+};
+
+export default function ProductPreview({ product }: ProductPreviewProps) {
     return <div className="picture">
         <img src={product?.imageUrl} alt="" />
         <div className="pictures-list">
-            <img alt=""/>
-            <img alt=""/>
-            <img alt=""/>
+            <img alt="" />
+            <img alt="" />
+            <img alt="" />
         </div>
     </div>;
 }
