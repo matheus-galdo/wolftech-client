@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { SecondaryButton } from "../../components/Button/Button";
-import { Button } from "../../components/Button/Button";
-import "./SignIn.scss";
-import { signIn } from "../../services/authService";
-import { redirect } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
+import { SecondaryButton, Button } from "../../components/Button/Button";
 import { SignInCredentials } from "../../types/credentials";
+import { signIn } from "../../services/authService";
+import "./SignIn.scss";
+import { AuthContext } from "../../context/AuthContext";
+import { useAlreadyLoggedIn } from "../../hooks/useAlreadyLoggedIn";
 
 
 export default function SignIn() {
     const [userCredentials, setUserCredentials] = useState<SignInCredentials>({ email: '', password: '' });
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
+    useAlreadyLoggedIn();
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
@@ -26,9 +30,8 @@ export default function SignIn() {
 
         signIn(credentials)
             .then(response => {
-                localStorage.setItem('credentials', JSON.stringify(response.data));
-                //TODO: passar o token pra um context de auth
-                redirect('/');
+                authContext?.storeCredentials(response.data);
+                navigate('/');
             }).catch((error: AxiosError) => {
                 toast.error(error.response?.status === 401 ? 'Usuário ou senha incorretos' : 'Ocorreu um erro inesperado');
             });

@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icons/md';
 import './header.scss';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Header() {
+    const authContext = useContext(AuthContext);
+
     return <header className="store-header">
         <div className="main-header">
             <div className="logo-container">
 
                 <Link className="logo" to={``}>
                     <img className="" src="/assets/img/wolftech-side.png" alt="logotipo" />
-                </Link> 
+                </Link>
             </div>
 
             <div className="search-bar-container">
@@ -26,7 +30,11 @@ export default function Header() {
                 </button>
 
                 <button className="btnNav material-icons">
-                    <MdAccountCircle />
+                    {authContext?.user?.name}
+                    {/* TODO: trocar isso pra um click programático */}
+                    <Link to={authContext?.userIsLoggedIn ? '' : "/sign-in"}>
+                        <MdAccountCircle />
+                    </Link>
                 </button>
             </div>
         </div>
@@ -36,8 +44,8 @@ export default function Header() {
             <ul className="menu">
                 <li id="dropdownBtn">
                     Categorias
-                    <MdKeyboardArrowDown/>
-                    
+                    <MdKeyboardArrowDown />
+
                     <ul className="dropdown-menu">
                         <li>Gabinete</li>
                         <li>Placa Mãe</li>
@@ -57,5 +65,5 @@ export default function Header() {
                 <li>Contato</li>
             </ul>
         </nav>
-    </header >
+    </header >;
 }

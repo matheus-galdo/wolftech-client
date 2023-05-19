@@ -1,11 +1,9 @@
 import axios from "axios";
 import { BASE_URL } from "./serviceAPIConfig";
-import { Authorization, SignInCredentials, User } from "../types/credentials";
+import { SignInResponse } from "../types/Services/Auth";
+import { SignInCredentials } from "../types/credentials";
 
-export type SignInResponse = {
-    user: User;
-    authorization: Authorization
-};
+
 
 export function signIn(credentials: SignInCredentials) {
     return axios.post<SignInResponse>(`${BASE_URL}/login`, credentials);
