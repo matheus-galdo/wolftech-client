@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
@@ -7,12 +7,14 @@ import { SignInCredentials } from "../../types/credentials";
 import { signIn } from "../../services/authService";
 import "./SignIn.scss";
 import { AuthContext } from "../../context/AuthContext";
+import { useAlreadyLoggedIn } from "../../hooks/useAlreadyLoggedIn";
 
 
 export default function SignIn() {
     const [userCredentials, setUserCredentials] = useState<SignInCredentials>({ email: '', password: '' });
     const authContext = useContext(AuthContext);
     const navigate = useNavigate();
+    useAlreadyLoggedIn();
 
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();

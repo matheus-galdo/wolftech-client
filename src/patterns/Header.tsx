@@ -31,7 +31,8 @@ export default function Header() {
 
                 <button className="btnNav material-icons">
                     {authContext?.user?.name}
-                    <Link to="/sign-in">
+                    {/* TODO: trocar isso pra um click programático */}
+                    <Link to={authContext?.userIsLoggedIn ? '' : "/sign-in"}>
                         <MdAccountCircle />
                     </Link>
                 </button>

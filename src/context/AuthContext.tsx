@@ -6,6 +6,7 @@ import { SignInResponse } from "../types/Services/Auth";
 export type AuthProviderContext = {
     token: Authorization | null;
     user: User | null;
+    userIsLoggedIn: boolean;
     storeCredentials: (signInResponse: SignInResponse) => void;
 };
 
@@ -18,6 +19,7 @@ type AuthProviderProps = {
 export default function AuthProvider(props: AuthProviderProps) {
     const [token, setToken] = useState<Authorization | null>(null);
     const [user, setUser] = useState<User | null>(null);
+    const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const credentialsString = localStorage.getItem('credentials');
@@ -35,9 +37,10 @@ export default function AuthProvider(props: AuthProviderProps) {
     function updateCredentialsState(signInResponse: SignInResponse) {
         setToken(signInResponse.authorization);
         setUser(signInResponse.user);
+        setUserIsLoggedIn(true);
     }
 
-    return <AuthContext.Provider value={{ token, user, storeCredentials }}>
+    return <AuthContext.Provider value={{ token, user, storeCredentials, userIsLoggedIn }}>
         {props.children}
     </AuthContext.Provider>;
 }
