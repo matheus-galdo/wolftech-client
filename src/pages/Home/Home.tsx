@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import ProductCard, { Product } from '../../components/ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import axios from 'axios';
 import './Home.scss';
+import { Product } from '../../types/Products';
 
 export default function Home() {
     const [products, setProducts] = useState<Product[]>([]);

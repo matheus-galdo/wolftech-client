@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getProductById } from "../../services/productsService";
 import { useParams } from "react-router-dom";
-import { Product } from "../../components/ProductCard/ProductCard";
 import formatProductPrice from "../../components/ProductCard/ProductPrice";
 import './Product.scss';
 import ProductPreview from "./ProductPreview";
 import { Button, SecondaryButton } from "../../components/Button/Button";
+import { Product } from "../../types/Products";
 
 export default function ProductDetais() {
     const [product, setProduct] = useState<Product | null>(null);

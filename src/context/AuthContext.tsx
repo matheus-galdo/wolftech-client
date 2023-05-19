@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { Authorization } from "../types/credentials";
 import { User } from "../types/credentials";
-import { SignInResponse } from "../services/authService";
+import { SignInResponse } from "../types/Services/Auth";
 
 export type AuthProviderContext = {
     token: Authorization | null;

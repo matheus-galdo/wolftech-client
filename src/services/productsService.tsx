@@ -1,5 +1,5 @@
-import axios from "axios"
-import { BASE_URL } from "./serviceAPIConfig"
+import axios from "axios";
+import { BASE_URL } from "./serviceAPIConfig";
 
 
 export function getProducts(){

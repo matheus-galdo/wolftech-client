@@ -1,17 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Card.scss';
 import formatProductPrice from './ProductPrice';
+import { Product } from '../../types/Products';
 
 export type ProductProps = {
     product: Product
-};
-
-export type Product = {
-    id: string
-    name: string
-    price: string
-    description: string
-    imageUrl: string
 };
 
 export default function ProductCard({ product }: ProductProps) {

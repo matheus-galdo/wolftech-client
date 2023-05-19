@@ -5,9 +5,9 @@ export default function ProductPreview({product}: ProductProps) {
     return <div className="picture">
         <img src={product?.imageUrl} alt="" />
         <div className="pictures-list">
-            <img />
-            <img />
-            <img />
+            <img alt=""/>
+            <img alt=""/>
+            <img alt=""/>
         </div>
     </div>;
 }
