@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { SecondaryButton } from "../../components/Button/Button";
-import { Button } from "../../components/Button/Button";
-import "./SignIn.scss";
-import { signIn } from "../../services/authService";
 import { redirect } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
+import { SecondaryButton, Button } from "../../components/Button/Button";
 import { SignInCredentials } from "../../types/credentials";
+import { signIn } from "../../services/authService";
+import "./SignIn.scss";
 
 
 export default function SignIn() {

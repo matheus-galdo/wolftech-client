@@ -9,7 +9,7 @@ export default function Header() {
 
                 <Link className="logo" to={``}>
                     <img className="" src="/assets/img/wolftech-side.png" alt="logotipo" />
-                </Link> 
+                </Link>
             </div>
 
             <div className="search-bar-container">
@@ -26,7 +26,9 @@ export default function Header() {
                 </button>
 
                 <button className="btnNav material-icons">
-                    <MdAccountCircle />
+                    <Link to="/sign-in">
+                        <MdAccountCircle />
+                    </Link>
                 </button>
             </div>
         </div>
@@ -36,8 +38,8 @@ export default function Header() {
             <ul className="menu">
                 <li id="dropdownBtn">
                     Categorias
-                    <MdKeyboardArrowDown/>
-                    
+                    <MdKeyboardArrowDown />
+
                     <ul className="dropdown-menu">
                         <li>Gabinete</li>
                         <li>Placa Mãe</li>
