@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
-import './Card.scss'
-import formatProductPrice from './ProductPrice'
+import { Link } from 'react-router-dom';
+import './Card.scss';
+import formatProductPrice from './ProductPrice';
 
 export type ProductProps = {
     product: Product
-}
+};
 
 export type Product = {
     id: string
@@ -12,7 +12,7 @@ export type Product = {
     price: string
     description: string
     imageUrl: string
-}
+};
 
 export default function ProductCard({ product }: ProductProps) {
 
@@ -29,5 +29,5 @@ export default function ProductCard({ product }: ProductProps) {
                 </div>
             </div>
         </div>
-    </Link >
+    </Link >;
 }

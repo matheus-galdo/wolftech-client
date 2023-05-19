@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icons/md';
 import './header.scss';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Header() {
+    const authContext = useContext(AuthContext);
+
     return <header className="store-header">
         <div className="main-header">
             <div className="logo-container">
@@ -26,6 +30,7 @@ export default function Header() {
                 </button>
 
                 <button className="btnNav material-icons">
+                    {authContext?.user?.name}
                     <Link to="/sign-in">
                         <MdAccountCircle />
                     </Link>
@@ -59,5 +64,5 @@ export default function Header() {
                 <li>Contato</li>
             </ul>
         </nav>
-    </header >
+    </header >;
 }

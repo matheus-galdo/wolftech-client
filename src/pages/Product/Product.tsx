@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
-import { getProductById } from "../../services/productsService"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { getProductById } from "../../services/productsService";
+import { useParams } from "react-router-dom";
 import { Product } from "../../components/ProductCard/ProductCard";
 import formatProductPrice from "../../components/ProductCard/ProductPrice";
 import './Product.scss';
