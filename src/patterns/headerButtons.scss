@@ -1,0 +1,25 @@
+.btn-nav-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    height: 1.4rem;
+}
+
+.btn-nav-container .btn-nav{
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    
+    background-color: unset;
+
+    
+
+    .dropdown-icon{
+        vertical-align: middle;
+    }
+
+    .btn-icon{
+        font-size: 1.5rem;
+    }
+}
+

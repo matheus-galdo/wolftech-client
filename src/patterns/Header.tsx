@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icons/md';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import './header.scss';
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import HeaderButtons from './HeaderButtons';
 
 export default function Header() {
-    const authContext = useContext(AuthContext);
 
     return <header className="store-header">
         <div className="main-header">
@@ -21,22 +19,7 @@ export default function Header() {
                 <button className="search-btn"><span className="material-icons">search</span></button>
             </div>
 
-            <div className="nav-btn-container">
-                <button className="btnNav material-icons">
-                    <MdShoppingCart />
-                    <span className="carrinho-counter">
-                        10
-                    </span>
-                </button>
-
-                <button className="btnNav material-icons">
-                    {authContext?.user?.name}
-                    {/* TODO: trocar isso pra um click programático */}
-                    <Link to={authContext?.userIsLoggedIn ? '' : "/sign-in"}>
-                        <MdAccountCircle />
-                    </Link>
-                </button>
-            </div>
+            <HeaderButtons />
         </div>
 
 
