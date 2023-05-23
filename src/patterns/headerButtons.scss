@@ -1,0 +1,14 @@
+.btn-nav-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    height: 1.4rem;
+}
+
+.btn-nav-container .btn-nav{
+    background-color: unset;
+}
+
+.btn-nav-container .btn-nav svg{
+    font-size: 1.5rem;
+}

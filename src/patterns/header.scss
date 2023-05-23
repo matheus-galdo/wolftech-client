@@ -1,15 +1,19 @@
 .store-header {
     background-color: #242424;
     color: #fff;
+
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
 }
 
-.store-header .main-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.logo img {
-    width: 200px;
+.logo {
+    margin: -0.5rem -1rem;
+    img {
+        width: 200px;
+    }
 }
 
 .store-header .categories .menu {
@@ -30,11 +34,11 @@
     display: none;
     padding: 1rem 0rem;
 
-    & li{
-        padding: .5rem 2rem;
+    & li {
+        padding: 0.5rem 2rem;
         width: 250px;
 
-        &:hover{
+        &:hover {
             background-color: #646cff;
         }
     }
