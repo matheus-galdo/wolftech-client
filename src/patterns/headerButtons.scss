@@ -3,23 +3,52 @@
     gap: 1rem;
     align-items: center;
     height: 1.4rem;
+    position: relative;
 }
 
-.btn-nav-container .btn-nav{
+.btn-nav-container .btn-nav {
     display: flex;
     align-items: center;
-    gap: .2rem;
-    
+    gap: 0.2rem;
+    cursor: pointer;
+
     background-color: unset;
 
-    
-
-    .dropdown-icon{
+    .dropdown-icon {
         vertical-align: middle;
     }
 
-    .btn-icon{
+    .btn-icon {
         font-size: 1.5rem;
     }
 }
 
+.btn-nav-container .user-dropdown-menu {
+    // display: none;
+    visibility: hidden;
+    transition: all 0.4s;
+}
+
+.btn-nav-container .user-btn {
+    position: relative;
+    &:hover .user-dropdown-menu {
+        display: block;
+        visibility: visible;
+    }
+}
+.btn-nav-container .user-dropdown-menu {
+    right: -50%;
+    top: 1.4rem;
+    background-color: #333;
+    border-radius: 5px;
+
+    ul{
+        list-style: none;
+    }
+
+    &:hover {
+        visibility: visible;
+
+        display: block;
+    }
+}

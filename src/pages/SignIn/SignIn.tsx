@@ -54,11 +54,11 @@ export default function SignIn() {
                 <h1>Acessar conta</h1>
 
                 <label htmlFor="email">E-mail</label>
-                <input type="email" name="email" onChange={handleFormChange} />
+                <input type="email" name="email" autoComplete="email" id="email" onChange={handleFormChange} />
 
                 <label htmlFor="password">Senha</label>
-                <input type="password" name="password" onChange={handleFormChange} />
-                <p className="forget-password">
+                <input type="password" name="password" id="password" onChange={handleFormChange} />
+                <p className="forget-password" role="button" tabIndex={0}>
                     Esqueceu a senha?
                 </p>
             </div>
