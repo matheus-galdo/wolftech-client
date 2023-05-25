@@ -1,11 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown} from 'react-icons/md';
+import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icons/md';
 import { AuthContext } from '../context/AuthContext';
 import './headerButtons.scss';
 
+const dropdownTimeMiliseconds = 300;
+
 export default function HeaderButtons() {
     const authContext = useContext(AuthContext);
+
 
 
     return <div className="btn-nav-container">
@@ -19,17 +22,26 @@ export default function HeaderButtons() {
                     <p>Entrar</p>
                 </button>
             </Link>
-
         </>}
 
-        {authContext?.user && <button className="btn-nav material-icons">
-            <MdKeyboardArrowDown className="dropdown-icon"/>
-            {authContext?.user?.name}
-            <MdAccountCircle className="btn-icon"/>
-        </button>}
+        {authContext?.user && <>
+            <div className="btn-nav material-icons user-btn">
+                <MdKeyboardArrowDown className="dropdown-icon" />
+                {authContext?.user?.name}
+                <MdAccountCircle className="btn-icon" />
+
+                {/*TODO: componentizar dropdown menu */}
+                <div className="user-dropdown-menu dropdown-menu">
+                    <ul>
+                        <li>Minha Conta</li>
+                        <li>Sair</li>
+                    </ul>
+                </div>
+            </div>
+        </>}
 
         <button className="btn-nav material-icons cart-btn">
-            <MdShoppingCart className="btn-icon"/>
+            <MdShoppingCart className="btn-icon" />
             <span className="carrinho-counter">
                 10
             </span>
