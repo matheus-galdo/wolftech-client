@@ -1,15 +1,19 @@
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icons/md';
 import { AuthContext } from '../context/AuthContext';
 import './headerButtons.scss';
-
-const dropdownTimeMiliseconds = 300;
+import { logOut } from '../services/authService';
 
 export default function HeaderButtons() {
     const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
 
-
+    function logout() {
+        logOut().then();
+        authContext?.logout();
+        navigate("/");
+    }
 
     return <div className="btn-nav-container">
         {!authContext?.user && <>
@@ -34,7 +38,7 @@ export default function HeaderButtons() {
                 <div className="user-dropdown-menu dropdown-menu">
                     <ul>
                         <li>Minha Conta</li>
-                        <li>Sair</li>
+                        <li onClick={logout}>Sair</li>
                     </ul>
                 </div>
             </div>

@@ -2,12 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import { Authorization } from "../types/credentials";
 import { User } from "../types/credentials";
 import { SignInResponse } from "../types/Services/Auth";
+import { getCredentials } from "../services/authService";
 
 export type AuthProviderContext = {
     token: Authorization | null;
     user: User | null;
     userIsLoggedIn: boolean;
     storeCredentials: (signInResponse: SignInResponse) => void;
+    logout: () => void;
 };
 
 export const AuthContext = createContext<AuthProviderContext | null>(null);
@@ -22,16 +24,20 @@ export default function AuthProvider(props: AuthProviderProps) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const credentialsString = localStorage.getItem('credentials');
-        if (credentialsString) {
-            const credentials: SignInResponse = JSON.parse(credentialsString);
-            updateCredentialsState(credentials);
-        }
+        const credentials = getCredentials();
+        credentials && updateCredentialsState(credentials);
     }, []);
 
     function storeCredentials(signInResponse: SignInResponse): void {
         localStorage.setItem('credentials', JSON.stringify(signInResponse));
         updateCredentialsState(signInResponse);
+    }
+
+    function logout(){
+        localStorage.removeItem('credentials');
+        setUser(null);
+        setToken(null);
+        setUserIsLoggedIn(false);
     }
 
     function updateCredentialsState(signInResponse: SignInResponse) {
@@ -40,7 +46,7 @@ export default function AuthProvider(props: AuthProviderProps) {
         setUserIsLoggedIn(true);
     }
 
-    return <AuthContext.Provider value={{ token, user, storeCredentials, userIsLoggedIn }}>
+    return <AuthContext.Provider value={{ token, user, storeCredentials, userIsLoggedIn, logout }}>
         {props.children}
     </AuthContext.Provider>;
 }
