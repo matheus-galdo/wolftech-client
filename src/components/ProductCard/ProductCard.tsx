@@ -14,14 +14,14 @@ export default function ProductCard({ product }: ProductProps) {
     const authContext = useContext(AuthContext);
 
     //TODO: create generic and reusable function to add product to cart
-    function addToCart(ev: React.MouseEvent, product: any) {
+    function addToCart(ev: React.MouseEvent, product: Product) {
         ev.preventDefault();
         
-        if (!authContext?.userIsLoggedIn) {
-            const error = new Response("Unauthenticated", { status: 401 });
-            return navigate("/error", {state: error});
+        if (!authContext?.userIsLoggedIn) {            
+            return navigate("/error", {state: {title: "Unauthenticated", status: 401 }});
         }
 
+        
         //TODO: send post request to shopping-cart
         navigate("/carrinho");
     }
@@ -39,7 +39,7 @@ export default function ProductCard({ product }: ProductProps) {
             </div>
         </Link >
         <div className="buttons">
-            <button onClick={(ev) => addToCart(ev, {})}>Adicionar ao carrinho</button>
+            <button onClick={(ev) => addToCart(ev, product)}>Adicionar ao carrinho</button>
         </div>
     </div>;
 }

@@ -9,7 +9,7 @@ import './Product.scss';
 
 export default function ProductDetais() {
     const [product, setProduct] = useState<Product | null>(null);
-    const { id } = useParams() as { id: string };
+    const { id } = useParams() as { id: string };    
 
     const installmentsValue = (Number(product?.price)/12).toString();
 
