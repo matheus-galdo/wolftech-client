@@ -14,16 +14,13 @@ export default function ProductCard({ product }: ProductProps) {
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
 
-    //TODO: create generic and reusable function to add product to cart
-    function addToCart(ev: React.MouseEvent, product: Product) {
-        ev.preventDefault();
-        
+    function addToCart(product: Product) {
         if (!authContext?.userIsLoggedIn) {            
             return navigate("/error", {state: {title: "Unauthenticated", status: 401 }});
         }
 
-        const ammountToBuy = 1;
-        addProductToCart(product.id, ammountToBuy).then(() => {
+        const ammountOfProducts = 1;
+        addProductToCart(product.id, ammountOfProducts).then(() => {
             navigate("/carrinho");
         });
     }
@@ -41,7 +38,7 @@ export default function ProductCard({ product }: ProductProps) {
             </div>
         </Link >
         <div className="buttons">
-            <button onClick={(ev) => addToCart(ev, product)}>Adicionar ao carrinho</button>
+            <button onClick={() => addToCart(product)}>Adicionar ao carrinho</button>
         </div>
     </div>;
 }
