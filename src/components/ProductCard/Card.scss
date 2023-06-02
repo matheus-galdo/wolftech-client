@@ -14,10 +14,8 @@
 
 .product-card-wrapper {
     border-radius: 2px;
-
     text-decoration: none;
     color: black;
-
     width: 250px;
 
     .image-container {
@@ -47,34 +45,41 @@
             white-space: nowrap;
             font-size: 1rem;
             color: #505050;
-            transition: color .2s ease-in-out;
+            transition: color 0.2s ease-in-out;
         }
 
         .price {
             color: #6363ea;
             font-size: 1.1rem;
-        }
-
-        .buttons button {
-            background: #c5c4cb;
-            color: #000;
-            border-radius: 2rem;
-            transition: all 0.3s ease-in-out;
-            padding: 0.4rem 1rem;
+            transition: color 0.2s ease-in-out;
         }
     }
 }
 
-.card-details .buttons button:hover {
-    background: #6363ea;
-    color: #fff;
-    border: 1px solid #6363ea;
+.product-card .buttons button {
+    background: #c5c4cb;
+    color: #000;
     border-radius: 2rem;
+    transition: all 0.3s ease-in-out;
+    padding: 0.4rem 1rem;
+
+    &:hover {
+        background: #6363ea;
+        color: #fff;
+        border: 1px solid #6363ea;
+        border-radius: 2rem;
+    }
 }
 
 .product-card:hover {
-    .card-details .name {
-        color: #000;
+    .card-details {
+        .name {
+            color: #000;
+        }
+
+        .price {
+            color: #4444f7;
+        }
     }
 
     .image-container img {
