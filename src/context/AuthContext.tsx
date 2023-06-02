@@ -29,6 +29,7 @@ export default function AuthProvider(props: AuthProviderProps) {
     }, []);
 
     function storeCredentials(signInResponse: SignInResponse): void {
+        //TODO: don't store credentials on localStorage 
         localStorage.setItem('credentials', JSON.stringify(signInResponse));
         updateCredentialsState(signInResponse);
     }

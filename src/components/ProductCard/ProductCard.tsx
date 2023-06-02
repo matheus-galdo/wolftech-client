@@ -4,6 +4,7 @@ import formatProductPrice from './ProductPrice';
 import { Product } from '../../types/Products';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { addProductToCart } from '../../services/cartService';
 
 export type ProductProps = {
     product: Product
@@ -21,9 +22,10 @@ export default function ProductCard({ product }: ProductProps) {
             return navigate("/error", {state: {title: "Unauthenticated", status: 401 }});
         }
 
-        
-        //TODO: send post request to shopping-cart
-        navigate("/carrinho");
+        const ammountToBuy = 1;
+        addProductToCart(product.id, ammountToBuy).then(() => {
+            navigate("/carrinho");
+        });
     }
 
     return <div className="product-card">
