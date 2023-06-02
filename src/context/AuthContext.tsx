@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { Authorization } from "../types/credentials";
 import { User } from "../types/credentials";
 import { SignInResponse } from "../types/Services/Auth";
-import { getCredentials } from "../services/authService";
+import { getCredentials } from "../services/helpers";
 
 export type AuthProviderContext = {
     token: Authorization | null;
