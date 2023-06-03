@@ -4,9 +4,11 @@ import { MdShoppingCart, MdAccountCircle, MdKeyboardArrowDown } from 'react-icon
 import { AuthContext } from '../context/AuthContext';
 import './headerButtons.scss';
 import { logOut } from '../services/authService';
+import { CartContext } from '../context/CartContext';
 
 export default function HeaderButtons() {
     const authContext = useContext(AuthContext);
+    const cartContext = useContext(CartContext);
     const navigate = useNavigate();
 
     function logout() {
@@ -44,11 +46,14 @@ export default function HeaderButtons() {
             </div>
         </>}
 
-        <button className="btn-nav material-icons cart-btn">
-            <MdShoppingCart className="btn-icon" />
-            <span className="carrinho-counter">
-                10
-            </span>
-        </button>
+        {/* TODO: componentizar o botão do carrinho */}
+        <Link to={authContext?.userIsLoggedIn ? '/carrinho' : "/sign-in"}>
+            <button className="btn-nav material-icons cart-btn">
+                <MdShoppingCart className="btn-icon" />
+                <span className="carrinho-counter">
+                    {cartContext?.numberOfItens}
+                </span>
+            </button>
+        </Link>
     </div>;
 }
