@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Cart } from "../types/Cart";
 import { getCart } from "../services/cartService";
 import { CartProduct } from "../types/CartProduct";
+import { AuthContext } from "./AuthContext";
 
 export type CartProviderContext = {
     numberOfItens: number;
@@ -19,12 +20,17 @@ type AuthProviderProps = {
 export default function CartProvider(props: AuthProviderProps) {
     const [cart, setCart] = useState<Cart | null>(null);
     const numberOfItens = cart ? cart.cartProducts.length : 0;
+    const authContext = useContext(AuthContext);
 
-    useEffect(() => {
-        getCart().then(response => {
-            setCart(response.data);
-        });
-    }, []);
+    useEffect(() => {        
+        if (authContext?.token) {
+            getCart().then(response => {
+                setCart(response.data);
+            });
+        }else{
+            setCart(null);
+        }
+    }, [authContext]);
 
     function addProduct(responseCartProduct: CartProduct): void {
         if (cart) {
