@@ -1,18 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
-import { getCart } from '../../services/cartService';
-import { Cart } from '../../types/Cart';
+import { CartContext } from '../../context/CartContext';
 
 export default function ShoppingCart() {
-    const [cart, setCart] = useState<Cart | null>(null);
-
-    useEffect(() => {
-        getCart().then(response => setCart(response.data));
-    }, []);
+    const cartContext = useContext(CartContext);
 
     return <div>
         <ItensContainer>
-            {cart?.cartProducts.map(item => <CartItem key={item.id}>{item.product.name}</CartItem>)}
+            {cartContext?.cart?.cartProducts.map(item => <CartItem key={item.id}>{item.product.name}</CartItem>)}
         </ItensContainer>
     </div>;
 }
