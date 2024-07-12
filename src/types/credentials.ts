@@ -17,3 +17,8 @@ export type SignInCredentials = {
     password: string;
 };
 
+export type SignUpInput = {
+    name: string;
+    email: string;
+    password: string;
+};

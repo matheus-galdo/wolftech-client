@@ -5,9 +5,11 @@ import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Error from "./pages/ErrorPage/Error";
+import SignUp from "./pages/SignUp/SignUp";
 
 const router = createBrowserRouter([
   { path: '/sign-in', element: <SignIn />, errorElement: <Error /> },
+  { path: '/sign-up', element: <SignUp />, errorElement: <Error /> },
   {
     path: "/", element: <StorePattern />, errorElement: <Error />, children: [
       { path: "/", element: <Home /> },
