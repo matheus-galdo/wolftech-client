@@ -44,8 +44,6 @@ export default function Header() {
                 </li>
 
                 <li>Monte seu PC</li>
-                <li>Sobre</li>
-                <li>Contato</li>
             </ul>
         </nav>
     </header >;

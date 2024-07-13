@@ -40,9 +40,17 @@
 
         .name {
             width: 100%;
+            height: 2.2rem;
+
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
+            display: -webkit-box;
+
+            word-break: break-word;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
             font-size: 1rem;
             color: #505050;
             transition: color 0.2s ease-in-out;
@@ -50,7 +58,9 @@
 
         .price {
             color: #6363ea;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
+            margin-bottom: .4rem;
+            font-weight: bold;
             transition: color 0.2s ease-in-out;
         }
     }
@@ -59,15 +69,40 @@
 .product-card .buttons button {
     background: #c5c4cb;
     color: #000;
-    border-radius: 2rem;
+    border-radius: 0rem;
+    height: 2.5rem;
     transition: all 0.3s ease-in-out;
     padding: 0.4rem 1rem;
+    position: relative;
+    z-index: 0;
+
+    &::before{
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        transform: rotate(-45deg);
+        top: -13px;
+        left: -13px;
+        content: '';
+        border: 10px solid transparent;
+        border-bottom: 10px solid #ddd;
+    }
+
+    &::after{
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        transform: rotate(45deg);
+        right: -10px;
+        bottom: -10px;
+        content: '';
+        border: 10px solid transparent;
+        border-left: 10px solid #ddd;
+    }
 
     &:hover {
         background: #6363ea;
         color: #fff;
-        border: 1px solid #6363ea;
-        border-radius: 2rem;
     }
 }
 
