@@ -6,35 +6,34 @@ import styled from 'styled-components';
 import { Product } from '../../types/Products';
 import { CartProduct } from '../../types/CartProduct';
 import { Button } from '../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Field, Form, Formik } from 'formik';
 
-export default function ShoppingCart() {
+export default function Checkout() {
     const cartContext = useContext(CartContext);
 
-    return <CartContainer>
-        <CartItem.ItensContainer>
-            {cartContext?.cart?.cartProducts.map(({ id, product, ammount }) => <CartItem.Item key={id}>
-                <CartItem.Picture src={product.imageUrl} alt={product.name} />
+    function onSubmit(values, {setSubmitting}) {
+        console.log(values);
+        setSubmitting(false);
+        
+    }
 
-                <CartItem.Name>{product.name}</CartItem.Name>
-                <CartItem.Name>{ammount}</CartItem.Name>
-                <CartItem.Price>{formatProductPrice((Number(product.price) * ammount).toString())}</CartItem.Price>
-            </CartItem.Item>)}
-        </CartItem.ItensContainer>
+    return <CartContainer>
+            <Formik initialValues={{ email:"", password: "" }} onSubmit={onSubmit}>
+                <Form>
+                    <Field type="email" name="email"/>
+                    <button>finalizar</button>
+                </Form>
+            </Formik>
 
         <CartSummary>
 
 
             <p>{cartContext?.cart?.cartProducts.length} produtos</p>
-            <p>Total: {cartContext?.cart?.cartProducts.reduce((acc, product) => {
+            <p>Total: {cartContext?.cart?.cartProducts.reduce((acc, product) => {                
                 return acc + (Number(product.product.price) * product.ammount);
             }, 0)}
             </p>
-            <Link to="/checkout">
-                <Button>
-                    Ir para pagamento
-                </Button>
-            </Link>
+            <Button>Finalizar compra</Button>
         </CartSummary>
     </CartContainer>;
 }

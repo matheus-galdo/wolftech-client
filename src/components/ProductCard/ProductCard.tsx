@@ -4,7 +4,7 @@ import formatProductPrice from './ProductPrice';
 import { Product } from '../../types/Products';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { addProductToCart } from '../../services/cartService';
+import { addProductToCart, AddProductToCartPayload } from '../../services/cartService';
 import { CartContext } from '../../context/CartContext';
 
 export type ProductProps = {
@@ -17,12 +17,16 @@ export default function ProductCard({ product }: ProductProps) {
     const cartContext = useContext(CartContext);
 
     function addToCart(product: Product) {
-        if (!authContext?.userIsLoggedIn) {            
-            return navigate("/error", {state: {title: "Unauthenticated", status: 401 }});
+        if (!authContext?.userIsLoggedIn) {
+            return navigate("/error", { state: { title: "Unauthenticated", status: 401 } });
         }
 
-        const ammountOfProducts = 1;
-        addProductToCart(product.id, ammountOfProducts).then((response) => {
+        const payload: AddProductToCartPayload = {
+            ammount: 1,
+            productId: product.id
+        };
+
+        addProductToCart(payload).then((response) => {
             cartContext?.addProduct(response.data);
             navigate("/carrinho");
         });
@@ -35,8 +39,8 @@ export default function ProductCard({ product }: ProductProps) {
                     <img src={product.imageUrl} alt={product.name} />
                 </div>
                 <div className="card-details">
-                    <h1 className="name">{product.name}</h1>
                     <p className="price">{formatProductPrice(product.price)}</p>
+                    <h1 className="name">{product.name}</h1>
                 </div>
             </div>
         </Link >

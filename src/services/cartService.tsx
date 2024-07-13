@@ -9,6 +9,11 @@ export function getCart(){
     return axios.get<Cart>(`${BASE_URL}/cart`, makeAuthHeaders());
 }
 
-export function addProductToCart(productId: string, ammount: number){
-    return axios.post<CartProduct>(`${BASE_URL}/cart/${productId}`, {ammount}, makeAuthHeaders());
+export function addProductToCart(payload: AddProductToCartPayload){
+    return axios.post<CartProduct>(`${BASE_URL}/cart`, payload, makeAuthHeaders());
 }
+
+export type AddProductToCartPayload = {
+    productId: string, 
+    ammount: number,
+};
