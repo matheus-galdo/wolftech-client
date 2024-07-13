@@ -6,14 +6,16 @@ import ProductPreview from "./ProductPreview";
 import { Button, SecondaryButton } from "../../components/Button/Button";
 import { Product } from "../../types/Products";
 import './Product.scss';
-import { addProductToCart } from "../../services/cartService";
+import { addProductToCart, AddProductToCartPayload } from "../../services/cartService";
 import { AuthContext } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext";
 
 export default function ProductDetais() {
     const [product, setProduct] = useState<Product | null>(null);
     const { id } = useParams() as { id: string };
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
+    const cartContext = useContext(CartContext);
 
     const installmentsValue = (Number(product?.price) / 12).toString();
 
@@ -21,26 +23,21 @@ export default function ProductDetais() {
         getProductById(id).then(response => setProduct(response.data));
     }, [id]);
 
-    function addToCart(product: Product) {
+    function addToCart(product: Product, action: "buyNow"|"addToCart") {
         if (!authContext?.userIsLoggedIn) {
             return navigate("/error", { state: { title: "Unauthenticated", status: 401 } });
         }
 
-        const ammountOfProducts = 1;
-        addProductToCart(product.id, ammountOfProducts).then(() => {
-            //TODO: update cart context
-        });
-    }
+        const payload: AddProductToCartPayload = {
+            ammount: 1,
+            productId: product.id
+        };
 
-    function buyNow(product: Product) {
-        if (!authContext?.userIsLoggedIn) {
-            return navigate("/error", { state: { title: "Unauthenticated", status: 401 } });
-        }
-
-        const ammountOfProducts = 1;
-        addProductToCart(product.id, ammountOfProducts).then(() => {
-            //TODO: update cart context
-            navigate("/carrinho");
+        addProductToCart(payload).then((response) => {
+            cartContext?.addProduct(response.data);
+            if (action === "buyNow") {
+                navigate("/carrinho");
+            }
         });
     }
 
@@ -55,8 +52,8 @@ export default function ProductDetais() {
                 <p className="short-description">lorem impsum dolor sit amet dor um benc cazzo</p>
 
                 {product && <div className="buttons">
-                    <Button onClick={() => buyNow(product)}>Comprar Agora</Button>
-                    <SecondaryButton onClick={() => addToCart(product)}>Adicionar ao Carrinho</SecondaryButton>
+                    <Button onClick={() => addToCart(product, "buyNow")}>Comprar Agora</Button>
+                    <SecondaryButton onClick={() => addToCart(product, "addToCart")}>Adicionar ao Carrinho</SecondaryButton>
                 </div>}
             </div>
         </section>
