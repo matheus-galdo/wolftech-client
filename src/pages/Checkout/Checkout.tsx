@@ -1,17 +1,13 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import CartItem from './Styled';
-import formatProductPrice from '../../components/ProductCard/ProductPrice';
 import styled from 'styled-components';
-import { Product } from '../../types/Products';
-import { CartProduct } from '../../types/CartProduct';
 import { Button } from '../../components/Button/Button';
 import { Field, Form, Formik } from 'formik';
 
 export default function Checkout() {
     const cartContext = useContext(CartContext);
 
-    function onSubmit(values, {setSubmitting}) {
+    function onSubmit(values: any, {setSubmitting}: {setSubmitting: any}) {
         console.log(values);
         setSubmitting(false);
         

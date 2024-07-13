@@ -3,8 +3,6 @@ import { CartContext } from '../../context/CartContext';
 import CartItem from './Styled';
 import formatProductPrice from '../../components/ProductCard/ProductPrice';
 import styled from 'styled-components';
-import { Product } from '../../types/Products';
-import { CartProduct } from '../../types/CartProduct';
 import { Button } from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 
